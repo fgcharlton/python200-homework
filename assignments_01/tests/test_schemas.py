@@ -39,7 +39,7 @@ def test_null():
     bad_data = {
         "time": ["2026-02-10","2026-03-10","2026-02-10"],
         "temperature_2m": [24.0, None, 24.0],
-        "precipitation": [4.0, 2.0]
+        "precipitation": [4.0, 2.0, 1.0]
     }
     with pytest.raises(ValidationError):
         HourlyBlock.model_validate(bad_data)

@@ -35,6 +35,13 @@ my_thermometer.add(23)
 my_thermometer.add(17)
 my_thermometer.add(24)
 
+# Create a second Thermometer 
+second_thermometer = Thermometer("Charlotte")
+second_thermometer.add(30)
+second_thermometer.add(22)
+second_thermometer.add(16)
+second_thermometer.add(23)
+
 # Question 1 Responses
 print(my_thermometer.average())
 print(my_thermometer.hottest())
@@ -44,6 +51,9 @@ print(my_thermometer.hottest())
 
 # Question 2 Responses 
 print(my_thermometer)
+
+# Print list of two
+print([my_thermometer, second_thermometer])
 
 # Explain what Python displays when a class has no __repr__, and why that is unhelpful when debugging.
 # Python shows the type and memory address of an object, which tells you nothing useful for debugging.
@@ -267,7 +277,8 @@ def test_mean_of_empty_raises():
     "values, expected",
     [
         ([1, 2, 3], 2),
-        ([4, 5, 6], 5),
+        ([5], 5),
+        ([-4, -6, -2], -4)
         ([7, 8, 9], 8)
     ]
 )

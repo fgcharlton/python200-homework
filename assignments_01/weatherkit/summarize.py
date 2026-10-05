@@ -53,5 +53,6 @@ class DailyAggregator:
         Returns:
         A list of dropped dates (strings), in the order they were encountered
         """
+        self._dropped_dates = []
         self.summarize(readings)
         return self._dropped_dates 

@@ -44,7 +44,7 @@ def main() -> None:
         )
 
     # print a warning for any incomplete days
-    incomplete = agg.incomplete_days()
+    incomplete = agg.incomplete_days(readings)
     if incomplete:
         print(f"WARNING: Incomplete days dropped: {', '.join(incomplete)}")
 
