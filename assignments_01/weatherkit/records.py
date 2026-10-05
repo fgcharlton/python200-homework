@@ -1,5 +1,5 @@
 from dataclasses import dataclass 
-from weatherkit import WeatherResponse
+from weatherkit.schemas import WeatherResponse
 
 # Task 3: Inside the Boundary -- weatherkit/records.py
 @dataclass

@@ -1,6 +1,6 @@
 # Task 4: The Aggregation -- weatherkit/summarize.py
 from dataclasses import dataclass
-from weatherkit import HourlyReading
+from weatherkit.records import HourlyReading
 
 @dataclass 
 class DailySummary:
