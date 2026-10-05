@@ -206,8 +206,9 @@ except ValidationError as e:
 
 # Construct a new Reading where temperature_c is passed as a string and humidity is passed as the integer
 try:
-    r = Reading(station_id = "101", timestamp = "2026-10-03", temperature_c = "21.5", humidity = 40.0)
-    print(f"temperature = {r.temperature_c}, humidity = {r.humidity}")
+    r = Reading(station_id = "101", timestamp = "2026-10-03", temperature_c = "21.5", humidity = 40)
+    print(f"temperature = {r.temperature_c}, type = {type(r.temperature_c)}") 
+    print(f"humidity = {r.humidity}, type = {type(r.humidity)}")
 except ValidationError as e:
     print(f"{e.error_count()} problems found\n")
     for err in e.errors():

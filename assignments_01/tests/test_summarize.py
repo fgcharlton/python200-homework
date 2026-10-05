@@ -2,10 +2,7 @@
 import json
 import pytest 
 from pathlib import Path
-from weatherkit import DailySummary, WeatherResponse, HourlyReading, DailyAggregator
-
-DEMO = Path("tests")
-DEMO.mkdir(exist_ok=True)
+from weatherkit import DailySummary, HourlyReading, DailyAggregator
 
 # Path(__file__).parent.parent rather than plain relative path because it finds files related to the script's location, rather than relative to the working directory. 
 with open(Path(__file__).parent.parent / "weather_raw.json") as f:
@@ -40,42 +37,57 @@ def test_groups(readings):
     assert len(summaries) == 2 
 
 # temp_max and temp_min are correct for a known small input.
-def test_temp_range():
+def test_temp_range(readings):
+    agg = DailyAggregator(min_hours = 2)
+    summaries = agg.summarize(readings)
+    assert summaries[0].temp_max == pytest.approx(24.5)
+    assert summaries[0].temp_min == pytest.approx(24.0)
+    assert summaries[1].temp_max == pytest.approx(25.5)
+    assert summaries[1].temp_min == pytest.approx(25.0)
+
+# test that temp range is valid
+def test_temp_range_method():
+    """temp_range() returns high minus low"""
     day = DailySummary("2026-04-10", 27.0, 24.0, 4.0, 24)
-    assert day.temp_range() == 3
+    assert day.temp_range() == pytest.approx(3.0)
+
 # Broke temp_range() function received the following error
-#====================================== 8 passed in 0.12s =======================================
+#=========================================== 1 failed, 8 passed in 0.19s ===========================================
 #(base) Fishers-Air:assignments_01 fishercharlton$ pytest tests/test_summarize.py -v
-#===================================== test session starts ======================================
+#=============================================== test session starts ===============================================
 #platform darwin -- Python 3.13.5, pytest-9.1.1, pluggy-1.5.0 -- /opt/anaconda3/bin/python
 #cachedir: .pytest_cache
 #rootdir: /Users/fishercharlton/CTD-repos/python200-homework/assignments_01
 #plugins: anyio-4.7.0
-#collected 8 items                                                                              
+#collected 9 items                                                                                                 
 
-#tests/test_summarize.py::test_groups PASSED                                              [ 12%]
-#tests/test_summarize.py::test_temp_range FAILED                                          [ 25%]
-#tests/test_summarize.py::test_precipitation_sum PASSED                                   [ 37%]
-#tests/test_summarize.py::test_short_day PASSED                                           [ 50%]
-#tests/test_summarize.py::test_min_hours[2-1-expected_incomplete0] PASSED                 [ 62%]
-#tests/test_summarize.py::test_min_hours[3-1-expected_incomplete1] PASSED                 [ 75%]
-#tests/test_summarize.py::test_min_hours[4-0-expected_incomplete2] PASSED                 [ 87%]
-#tests/test_summarize.py::test_min_hours[24-0-expected_incomplete3] PASSED                [100%]
+#tests/test_summarize.py::test_groups PASSED                                                                 [ 11%]
+#tests/test_summarize.py::test_temp_range PASSED                                                             [ 22%]
+#tests/test_summarize.py::test_temp_range_method FAILED                                                      [ 33%]
+#tests/test_summarize.py::test_precipitation_sum PASSED                                                      [ 44%]
+#tests/test_summarize.py::test_short_day PASSED                                                              [ 55%]
+#tests/test_summarize.py::test_min_hours[2-1-expected_incomplete0] PASSED                                    [ 66%]
+#tests/test_summarize.py::test_min_hours[3-1-expected_incomplete1] PASSED                                    [ 77%]
+#tests/test_summarize.py::test_min_hours[4-0-expected_incomplete2] PASSED                                    [ 88%]
+#tests/test_summarize.py::test_min_hours[24-0-expected_incomplete3] PASSED                                   [100%]
 
-#=========================================== FAILURES ===========================================
-#_______________________________________ test_temp_range ________________________________________
+#==================================================== FAILURES =====================================================
+#_____________________________________________ test_temp_range_method ______________________________________________
 
-#    def test_temp_range():
+#    def test_temp_range_method():
+#        """temp_range() returns high minus low"""
 #        day = DailySummary("2026-04-10", 27.0, 24.0, 4.0, 24)
-#>       assert day.temp_range() == 3
-#E       AssertionError: assert 51.0 == 3
-#E        +  where 51.0 = temp_range()
-#E        +    where temp_range = DailySummary(date='2026-04-10', temp_max=27.0, temp_min=24.0, precipitation_sum=4.0, hours_observed=24).temp_range
+#>       assert day.temp_range() == pytest.approx(3.0)
+#E       assert 51.0 == 3.0 ± 3.0e-06
+#E         
+#E         comparison failed
+#E         Obtained: 51.0
+#E         Expected: 3.0 ± 3.0e-06
 
-#tests/test_summarize.py:31: AssertionError
-#=================================== short test summary info ====================================
-#FAILED tests/test_summarize.py::test_temp_range - AssertionError: assert 51.0 == 3
-#================================= 1 failed, 7 passed in 0.13s ==================================
+#tests/test_summarize.py:52: AssertionError
+#============================================= short test summary info =============================================
+#FAILED tests/test_summarize.py::test_temp_range_method - assert 51.0 == 3.0 ± 3.0e-06
+#=========================================== 1 failed, 8 passed in 0.27s ===========================================
 
 # precipitation_sum adds up correctly. Use pytest.approx.
 def test_precipitation_sum(readings):

@@ -51,6 +51,9 @@ def main() -> None:
 if __name__ == "__main__":
     main()
 
+# Explain what would happen if you omitted the guard and someone imported report.py to reuse one of its helper functions.
+# The guard directs it to run only when directed, not when imported. If the guard is omitted, it may accidentally run code when importing.
+
 # Task 7: Reflection
 # Your WeatherResponse rejects the whole file if a single temperature is null. Is that the right behavior for a weather pipeline? Describe one situation where you would want it, and one where you would rather tolerate the gap. What would you change in the schema to tolerate it?
 # It is dependent on the weather pipeline and what you hope to capture. For example, in this notebok, we do a variety of things with temperature, such as calculating max, min, and range of temperatures. In this case, it would be beneficial to reject if we are missing temperature. In situation where we don't necessarily care about temperature variables, we can choose to tolerate missing temperature. It could be helpful to push the file through if you were more interested in precipitation measures. You could make it tolerate a gap if temperature_2m was allowed to contain None.  

@@ -3,9 +3,6 @@ import json
 from pathlib import Path
 from weatherkit import WeatherResponse, HourlyReading, to_readings
 
-DEMO = Path("tests")
-DEMO.mkdir(exist_ok=True)
-
 # Path(__file__).parent.parent rather than plain relative path because it finds files related to the script's location, rather than relative to the working directory. 
 with open(Path(__file__).parent.parent / "weather_raw.json") as f:
     data = json.load(f)
