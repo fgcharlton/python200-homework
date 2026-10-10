@@ -126,7 +126,7 @@ print(f" Test R²: {r2_score(y_test_full, y_test_pred):.3f}")
 print(f"RMSE = {np.sqrt(mean_squared_error(y_test_full, y_test_pred))}")
 
 # How much does adding features help?
-# Adding features increased the train and test R² as well as the RMSE.
+# Adding features increased the train and test R² as well as decreased the RMSE, showing an improvement from the single feature model.
 # The train R² increased to 0.867 from the single feature R², which was 0.857. This brings R² closer to 1, meaning the model is improved.
 # The test R² increased to 0.898 from the single feature R², which was 0.857. This brings R² closer to 1, meaning the model is improved.
 # The RMSE decreased to 2.8°C from 3.3°C. This means predictions are typically off by a little more than 2.8°C, which is an improvement from the single feature model.
