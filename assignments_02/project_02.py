@@ -171,7 +171,7 @@ print(X_test_full.shape)
 # The size of the dataset is 73 rows with 4 columns. This is consistent with the 80% for training, 20% for testing. 
 
 # The RMSE and R² of full model, and what a typical error of that size means on a temperature scale.
-# The RMSE is 2.8°C, indiciating predictions are typically off by 2.8°C. The R² is 0.898, which is an improvement from the single feature model. 
+# The RMSE is 2.8°C, indiciating predictions are typically off by 2.8°C. This is an improvement from the single feature model which had an RSME of 3.3°C. The R² is 0.898, which is an improvement from the single feature model. 
 
 # Which feature has the largest effect on the predicted high, and in which direction.
 # The temperature minimum has the biggest impact on predicted high. The model predicts that for every 1°C increase in the minimum temperature,  the predicted max temperature increases by 0.92°C.

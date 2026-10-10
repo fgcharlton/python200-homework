@@ -22,7 +22,7 @@ except ValueError as e:
     print("ValueError: ", str(e).splitlines()[0])
 
 # Print predicted values for a day with a 6 °C low and an 18 °C low
-print(f"\nPrediction for a day with a 6 °C low: {model.predict([[12]])[0]:.1f}")      # predict
+print(f"\nPrediction for a day with a 6 °C low: {model.predict([[6]])[0]:.1f}")      # predict
 print(f"\nPrediction for a day with a 18 °C low: {model.predict([[18]])[0]:.1f}")      # predict
 
 # Q2: Start with 1D array, reshape it and print new shape
