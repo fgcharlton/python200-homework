@@ -40,6 +40,7 @@ print(df.isnull().sum())
 
 # Create a good_for_running column
 df["good_for_running"] = ((7.0 <= df["temperature_2m_max"]) & (df["temperature_2m_max"] <= 28.0) & (df["temperature_2m_min"] >= 0.0) & (df["precipitation_sum"] < 3.0) & (df["wind_speed_10m_max"] < 30.0)).astype(int)
+# Updated max temperature for a good running day to be as high as 28 C because that can still be a nice day to run in Greensboro, NC. 
 
 # Print class balance of good days and skip days
 print("Balance of Good Days and Skip Days\n", df["good_for_running"].value_counts())
@@ -56,6 +57,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import (
     accuracy_score,
     classification_report,
+    f1_score,
     confusion_matrix,
     ConfusionMatrixDisplay,
 )
@@ -162,8 +164,8 @@ metadata = {
     "city": "Greensboro, NC",
     "features": features,
     "label": "good_for_running",
-    "test_accuracy": 0.822,
-    "test_f1": 0.81,
+    "test_accuracy": accuracy_score(y_test, logreg_model.predict(X_test)),
+    "test_f1": f1_score(y_test, logreg_model.predict(X_test)),
     "label_rule": {
         "temperature_2m_max": "7 to 28 C",
         "temperature_2m_min": ">= 0 C",
