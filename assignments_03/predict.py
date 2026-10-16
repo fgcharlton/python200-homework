@@ -9,6 +9,9 @@ clf = joblib.load("models/weather_classifier.pkl")
 # Load the metadata 
 with open("models/weather_classifier_metadata.json") as f:
     metadata = json.load(f)
+    print("City: ", metadata["city"])
+    print("Features: ", metadata["features"])
+    print("Accuracy: ", metadata["test_accuracy"])
 
 # Build small DataFrame of at least 4 hypothetical days: a clearly good day, a clearly bad day, and at least one borderline day
 new_days = pd.DataFrame(
@@ -40,9 +43,7 @@ A day that is 0.52 is about the same as flipping a coin."""
 # How could you make this error message more helpful?
 """If train_classifier.py was never ran, the file would not exist so it would not be able to load in the model. This is a loud, immediate failure that tells you what is wrong.
 If just the model is saved and not the whole pipeline, when you call .predict() on raw, unscaled data the predictions will be silently wrong with no error.
-When you load the data, you can asser the the predictions match through similar code below:
-assert (loaded.predict(X_test) == model.predict(X_test)).all()
-print("Predictions match.")
+When you load the data, you can wrap joblib.load in a try/except with a clear message that states 'model file not found; run train_classifier.py first' 
 """
 # In Week 10, this model will run inside a cloud pipeline that classifies each day's weather automatically. Name one thing you would change about the current predict.py that would need to change to support that.
 """The current script has no error handling around the model load. In a cloud pipline, a missing pkl file shouldn't crash the script - it should fail with a clear message. """

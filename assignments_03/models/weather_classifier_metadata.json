@@ -1,6 +1,7 @@
 {
   "python_version": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 11:23:37) [Clang 14.0.6 ]",
   "sklearn_version": "1.6.1",
+  "city": "Greensboro, NC",
   "features": [
     "temperature_2m_max",
     "temperature_2m_min",

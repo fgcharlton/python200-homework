@@ -159,6 +159,7 @@ import sklearn
 metadata = {
     "python_version": sys.version,
     "sklearn_version": sklearn.__version__,
+    "city": "Greensboro, NC",
     "features": features,
     "label": "good_for_running",
     "test_accuracy": 0.822,
