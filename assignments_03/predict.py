@@ -33,8 +33,16 @@ for i, (pred, prob) in enumerate(zip(preds, probs)):
 
 # Task 8: Reflect
 # Pick you borderline day. What probability did the model give it? Would you call the model confident or uncertain, and how would you handle a day where it predicts 0.52?
+"""My borderline day was labeled as "good" with a 0.79 confidence. So, even though the day is close to the threshold, the model was pretty confident that it was still a good day for running. 
+A day that is 0.52 is about the same as flipping a coin."""
 
 # predict.py has no training code. What would break if someone ran predict.py before train_classifier.py had ever been run?
 # How could you make this error message more helpful?
-
+"""If train_classifier.py was never ran, the file would not exist so it would not be able to load in the model. This is a loud, immediate failure that tells you what is wrong.
+If just the model is saved and not the whole pipeline, when you call .predict() on raw, unscaled data the predictions will be silently wrong with no error.
+When you load the data, you can asser the the predictions match through similar code below:
+assert (loaded.predict(X_test) == model.predict(X_test)).all()
+print("Predictions match.")
+"""
 # In Week 10, this model will run inside a cloud pipeline that classifies each day's weather automatically. Name one thing you would change about the current predict.py that would need to change to support that.
+"""The current script has no error handling around the model load. In a cloud pipline, a missing pkl file shouldn't crash the script - it should fail with a clear message. """
