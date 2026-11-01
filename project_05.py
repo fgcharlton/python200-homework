@@ -119,7 +119,7 @@ def generate_cover_letter(job_title: str, background: str) -> str:
 
     response = get_completion(messages, temperature = 1.0)
 
-    return print(response)
+    return response
 
 job_title = "Junior Data Engineer"
 background = "Five years of experience as a middle school math teacher; recently completed \
