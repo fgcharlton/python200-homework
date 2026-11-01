@@ -184,7 +184,7 @@ print(result.results[0].categories.model_dump())
 def run_chatbot():
     # 1. Initialize conversation history with your system prompt
     messages = [
-        {"role": "system", "content": "You are a professional resume coach helping a career changer. Ask questions to learn their skills, strengths, weaknesses, and interests in a new job as well as what their current and new job is before making recommendations."}
+        {"role": "system", "content": "You are a patient, encouraging Job Coach who helps job seekers find a job as a data analyst in a health setting (e.g., healthcare, public health). You will only help with job application materials, remind the user to review and edit any outputs before submitting an application, and acknowledge that output may not fit the user's industry norms (so the user should use their own judgement)."}
     ]
 
     print("=" * 50)
