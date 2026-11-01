@@ -63,6 +63,7 @@ def rewrite_bullets(bullets: list[str]) -> list[dict]:
         return result 
     except json.JSONDecodeError:
         print("Error: response was not valid JSON")
+        return response 
 
 bullets = [
     "Helped customers with their problems",
@@ -155,6 +156,7 @@ def is_safe(text: str) -> bool:
     )
     flagged = result.results[0].flagged
     if flagged:
+        print("I can't help with that - please rephrase.")
         return False
     return True
 
