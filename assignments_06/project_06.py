@@ -38,7 +38,7 @@ print(f"Loaded {len(docs)} documents from {docs_dir}")
 
 # Print file name of each document
 for doc in docs:
-    print("Documents written: ", doc.metadata["file_name"])
+    print("Document written: ", doc.metadata["file_name"])
 
 # Step 3: Build the Index and Query Engine
 # Set the embedding model
