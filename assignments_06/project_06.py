@@ -37,7 +37,8 @@ docs = SimpleDirectoryReader(str(docs_dir)).load_data()
 print(f"Loaded {len(docs)} documents from {docs_dir}")
 
 # Print file name of each document
-print("Documents written: ", sorted(os.listdir(docs_dir)))
+for doc in docs:
+    print("Documents written: ", doc.metadata["file_name"])
 
 # Step 3: Build the Index and Query Engine
 # Set the embedding model
@@ -71,6 +72,7 @@ for q in questions:
     print("A:", response)
 
     for node_with_score in response.source_nodes:
+        print(f"Document Name:", node_with_score.node.metadata["file_name"])
         print(f"Node ID: {node_with_score.node.node_id}")
         print(f"Similarity Score: {node_with_score.score:.4f}")
         print(f"Text Snippet: {node_with_score.node.get_content()[:200]}...")
@@ -102,6 +104,7 @@ for q in questions:
     print("A:", response)
 
     for node_with_score in response.source_nodes:
+        print(f"Document Name:", node_with_score.node.metadata["file_name"])
         print(f"Node ID: {node_with_score.node.node_id}")
         print(f"Similarity Score: {node_with_score.score:.4f}")
         print(f"Text Snippet: {node_with_score.node.get_content()[:200]}...")
