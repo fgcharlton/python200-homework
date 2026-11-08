@@ -2,11 +2,10 @@ from dotenv import load_dotenv
 import os
 import string
 from pathlib import Path
-from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, StorageContext, Settings
+from llama_index.core import SimpleDirectoryReader, VectorStoreIndex, Settings
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.llms.openai import OpenAI
-from llama_index.core.evaluation import FaithfulnessEvaluator, RelevancyEvaluator
-from llama_index.vector_stores.postgres import PGVectorStore
+
 
 # Part 2: Mini-Project: Groundwork Coffee Co. Q&A Assistant
 """
@@ -21,8 +20,6 @@ if load_dotenv():
     print("Successfully loaded api key")
 else:
     print("No api key loaded check out .env")
-
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Add an assert statement to verify that groundwork_docs/ exists
 docs_dir = Path("resources/groundwork_docs")
