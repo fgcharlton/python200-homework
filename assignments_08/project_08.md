@@ -20,3 +20,6 @@ Thoughts on cost: I thought it was interesting how much the cost increased when 
 ### Additional Questions
 What does the cost difference tell you about when a GPU instance is or isn't worth it?
 It seems that GPUs are worth the money when you have a heavy, continuous workflow (like in scenario B). It may not be worth the price for smaller, less frequent workflows. 
+
+## Video Link
+https://youtu.be/WYnCb4nD8PY

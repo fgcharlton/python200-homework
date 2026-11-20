@@ -50,7 +50,7 @@ IaaS
 """
 # AWS S3 (Simple Storage Service)
 """
-PaaS
+IaaS
 """
 # GitHub Codespaces
 """
