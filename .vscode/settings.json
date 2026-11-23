@@ -1,5 +1,17 @@
 {
     "python-envs.defaultEnvManager": "ms-python.python:conda",
     "python-envs.defaultPackageManager": "ms-python.python:conda",
-    "python.terminal.useEnvFile": true
+    "python.terminal.useEnvFile": true,
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "aws-0-us-west-2.pooler.supabase.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "supabase-weather",
+            "database": "postgres",
+            "username": "postgres.euxbvomkypjnvdkghtoi"
+        }
+    ]
 }
