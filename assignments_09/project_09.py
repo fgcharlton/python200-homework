@@ -77,8 +77,8 @@ count_response = supabase.table("weather_raw").select("date", count="exact").exe
 print(f"Total rows in weather_raw: {count_response.count}")
 
 # Print earliest and latest dates in the table
-first = supabase.table("weather_raw").select("*").eq("date", "2023-01-01").execute()
-last = supabase.table("weather_raw").select("*").eq("date", "2023-12-31").execute()
+first = supabase.table("weather_raw").select("*").order("date", desc=False).limit(1).execute()
+last = supabase.table("weather_raw").select("*").order("date", desc=True).limit(1).execute()
 
 print("First record:", first.data)
 print("Last record:", last.data)
